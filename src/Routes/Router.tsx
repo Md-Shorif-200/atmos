@@ -1,3 +1,4 @@
+import { Layout } from "@/components/layout";
 import {
   createBrowserRouter,
 } from "react-router-dom";
@@ -6,6 +7,12 @@ import {
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Layout/>,
+    children : [
+         {
+            path : "/",
+            element : <h1 className="text-white">cdfdfd</h1>
+         }
+    ]
   },
 ]);
