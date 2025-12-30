@@ -1,6 +1,9 @@
 import { Api_Config } from "./apiconfig";
+import type { Coordinates, WeatherData } from "./types";
 
 class WeatherAPI {
+
+    // ---------- Creat Url 
 
   private creatUrl(endpoint:string,params : Record<string, string | number>) {
             const searchParams =  new URLSearchParams({
@@ -9,8 +12,30 @@ class WeatherAPI {
             })
             return `${endpoint}?${searchParams.toString()}`
   }
-  private fetchData(){}
-  async getCurrentWeather(){}
+
+// -------- fetch data
+  private async fetchData<T>(url :string) : Promise<T>{
+      const  res = await fetch(url)
+       if(!res.ok) {
+         throw new Error(`Weather Api Error`)
+       }
+
+        return res.json()
+  }
+
+//  -------------- getCurrentWeather
+
+  async getCurrentWeather({lat,lon}:Coordinates):Promise<WeatherData> {
+        const url = this.creatUrl(`${Api_Config.base_url}/weather`,{
+             lat : lat,
+             lon :  lon,
+             units : Api_Config.Default_Params.units
+        })
+
+         return this.fetchData<WeatherData>(url)
+  }
+
+
   async getForcast (){}
   async reverseGeoCode(){}
 }
