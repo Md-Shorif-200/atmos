@@ -12,6 +12,8 @@ export interface WeatherCondition {
      icon : string
 }
 
+// -------- current weather
+
 export interface WeatherData {
      coord : Coordinates;
      weather : WeatherCondition;
@@ -41,3 +43,37 @@ export interface WeatherData {
 }
 
                           
+
+// ---------- forecast 
+export  interface ForecastData {
+                          
+
+ 
+  list: Array<{
+    dt : number;
+     main : WeatherData["main"];
+     weather : WeatherData["weather"];
+     wind : WeatherData["wind"];
+     dt_txt : number;
+
+  }>;
+   city: {
+
+    name : string;
+    country : string;
+    sunrise : number;
+    sunset : number ;
+ }
+  
+}
+
+// -------- Geocoding Response
+ export interface GeocodingResponse {
+      name : string;
+    local_names: Record<string , string>
+     lat : number;
+     lon : number;
+     country : string;
+     state?:string;
+  }
+ 
