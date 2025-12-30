@@ -1,4 +1,6 @@
 import { Layout } from "@/components/layout";
+import { CityPage } from "@/Page/city-page";
+import { WeatherDashboard } from "@/Page/weather-dashboard";
 import {
   createBrowserRouter,
 } from "react-router-dom";
@@ -11,7 +13,11 @@ export const router = createBrowserRouter([
     children : [
          {
             path : "/",
-            element : <h1 className="text-white">cdfdfd</h1>
+            element : <WeatherDashboard/>
+         },
+         {
+          path : '/city:id',
+          element : <CityPage />
          }
     ]
   },
